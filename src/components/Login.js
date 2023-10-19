@@ -1,30 +1,46 @@
-import { Grid, Paper } from '@mui/material';
+import { Grid, Card } from '@mui/material';
 import React, { Fragment } from "react";
-import { useTheme } from '@mui/material/styles'
-import { BorderAllOutlined } from '@mui/icons-material';
+import LoginHeader from '../LoginUtils/LoginHeader';
 
+import CssBaseline from "@mui/material/CssBaseline";
+
+import Typography from "@mui/material/Typography";
+import LoginEmailForm from '../LoginUtils/LoginEmailForm';
+
+function Copyright(props) {
+  return (
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
 
 const Login = () => {
-  const theme = useTheme();
-  const style = {
-    logo: {
-      margin: theme.spacing(3),
-      padding: theme.spacing(2, 3),
-      color: theme.palette.primary.main,
-      backgroundColor: theme.palette.secondary.main,
-      borderRadius: 1,
-      border: `2px solid ${theme.palette.primary.main}`
-    }
-  }
 
   return (
     <Fragment>
-      <Grid container>
-        <Grid item  >
-          <Paper sx={style.logo}>
-            Vacation Request App
-          </Paper>
+      <Grid container flexDirection={'column'} >
+        <Grid item>
+          <LoginHeader />
         </Grid>
+
+        <Grid item
+          sx={{
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+          minWidth={"md"}
+          >
+          <LoginEmailForm />
+        </Grid>
+
       </Grid>
     </Fragment>
   );
