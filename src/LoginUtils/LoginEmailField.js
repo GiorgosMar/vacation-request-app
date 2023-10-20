@@ -1,35 +1,41 @@
 import React, { Fragment } from "react";
-import { TextField } from "@mui/material";
+import { Input, TextField } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
+
+import InputAdornment from '@mui/material/InputAdornment';
+
+
+
+import LoginButton from "./LoginButton";
 
 const LoginEmailField = ({ children, ...props }) => {
+    const theme = useTheme();
+    const style = {
+        emailTextField: {
+            fontFamily: ["Arial"],
+            color: '#000000',
+            opacity: '0.7',
+        },
+    }
 
     return (
         <Fragment>
             <TextField
-                inputProps={{
-                    style: {
-                        fontFamily: "Arial",
-                        color: "white",
-                    },
-                }}
-                InputLabelProps={{
-                    style: { fontFamily: "Arial", color: "white", opacity: "0.7", }
-                }}
-                sx={{
-                    "& .MuiOutlinedInput-root.Mui-focused": {
-                      "& > fieldset": {
-                        borderColor: "#57010b"
-                      }
-                    }
-                  }}
-                margin="normal"
                 required
                 fullWidth
                 id="email"
-                label="Εισάγετε Email"
+                label="Email"
                 name="email"
                 autoComplete="email"
                 {...props}
+                sx={style.emailTextField}
+                InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <LoginButton/>
+                      </InputAdornment>
+                    ),
+                  }}
             >
                 {children}
             </TextField>

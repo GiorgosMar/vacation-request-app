@@ -1,8 +1,7 @@
-import { Grid, Card } from '@mui/material';
+import { Grid } from '@mui/material';
 import React, { Fragment } from "react";
-import LoginHeader from '../LoginUtils/LoginHeader';
+import { useTheme } from '@mui/material/styles';
 
-import CssBaseline from "@mui/material/CssBaseline";
 
 import Typography from "@mui/material/Typography";
 import LoginEmailForm from '../LoginUtils/LoginEmailForm';
@@ -23,24 +22,25 @@ function Copyright(props) {
 }
 
 const Login = () => {
+  const theme = useTheme();
+  const style = {
+    form: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }
+  }
+
 
   return (
     <Fragment>
-      <Grid container flexDirection={'column'} >
-        <Grid item>
-          <LoginHeader />
-        </Grid>
-
+      <Grid container style={{ height: '100vh' }} >
         <Grid item
-          sx={{
-            display: 'flex',
-            justifyContent: 'center'
-          }}
-          minWidth={"md"}
-          >
+          container
+          sx={style.form}
+        >
           <LoginEmailForm />
         </Grid>
-
       </Grid>
     </Fragment>
   );

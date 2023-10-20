@@ -1,4 +1,4 @@
-import { Card, Paper } from '@mui/material';
+import { Card, Paper, Typography } from '@mui/material';
 import React, { Fragment, useState } from "react";
 import { useTheme } from '@mui/material/styles';
 
@@ -6,16 +6,22 @@ import { useTheme } from '@mui/material/styles';
 const LoginHeader = () => {
     const theme = useTheme();
     const style = {
-        logo: { 
-            margin: theme.spacing(2),
-            padding: theme.spacing(2, 3),
+        logo: {
+            margin: theme.spacing(1),
+            padding: theme.spacing(1, 2),
             color: theme.palette.primary.main,
             backgroundColor: theme.palette.secondary.main,
             borderRadius: 1,
             border: `2px solid ${theme.palette.primary.main}`,
             display: "flex",
             justifyContent: "center",
-            maxWidth: 220
+            maxWidth: 150
+        },
+
+        typographyLogo: {
+            fontFamily: ["Roboto", "Lato", "Sans Serif"],
+            fontSize: 12,
+            lineHeight: 2,
         }
     }
 
@@ -23,7 +29,9 @@ const LoginHeader = () => {
         <Fragment>
             <Card>
                 <Paper sx={style.logo}>
-                    Vacation Request App
+                    <Typography sx={style.typographyLogo}>
+                        Vacation Request App
+                    </Typography>
                 </Paper>
             </Card>
         </Fragment>

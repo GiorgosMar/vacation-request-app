@@ -13,6 +13,9 @@ const theme = () =>
             secondary: {
                 main: '#ffffff',
                 contrastText: grey[50]
+            },
+            loginForm: {
+                main: '#000000'
             }
         },
         shape: {
