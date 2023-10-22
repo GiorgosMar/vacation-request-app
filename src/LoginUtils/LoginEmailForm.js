@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 
 import LoginEmailField from "../LoginUtils/LoginEmailField";
 
-const LoginEmailForm = () => {
+const LoginEmailForm = ({ children, ...props }) => {
     const theme = useTheme();
     const style = {
         form: {
@@ -59,7 +59,7 @@ const LoginEmailForm = () => {
                 <Typography variant={'h5'} component={'h1'} sx={style.typographyLogin}>
                     Είσοδος
                 </Typography>
-                <LoginEmailField/>
+                {children}
             </Paper>
         </Fragment>
     );
