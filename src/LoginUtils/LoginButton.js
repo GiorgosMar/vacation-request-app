@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-import IconButton from '@material-ui/core/IconButton';
+import { IconButton } from "@mui/material";
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 
 const LoginButton = ({ children, ...props }) => {

@@ -4,8 +4,6 @@ import { useTheme } from '@mui/material/styles';
 
 import Typography from "@mui/material/Typography";
 
-import LoginEmailField from "../LoginUtils/LoginEmailField";
-
 const LoginEmailForm = ({ children, ...props }) => {
     const theme = useTheme();
     const style = {
@@ -16,8 +14,8 @@ const LoginEmailForm = ({ children, ...props }) => {
             flexDirection: "column",
             alignItems: "center",
             borderRadius: 1,
-            minWidth: 650,
-            minHeight: 700,
+            minWidth: 600,
+            minHeight: 650,
         },
 
         logo: {
