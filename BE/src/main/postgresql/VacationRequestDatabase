@@ -1,0 +1,91 @@
+-- create the Company table
+CREATE TABLE company (
+id INT NOT NULL PRIMARY KEY,
+name VARCHAR(255) NOT NULL,
+address VARCHAR(255) NOT NULL,
+phone VARCHAR(20) NOT NULL
+);
+
+-- create a sequence for the Company table
+CREATE SEQUENCE seq_company START 1 INCREMENT BY 50;
+
+CREATE TABLE employee (
+id INT NOT NULL PRIMARY KEY,
+name VARCHAR(255) NOT NULL,
+surname VARCHAR(255) NOT NULL,
+start_date DATE NOT NULL,
+vacation_days INT NOT NULL,
+salary DECIMAL(10,2) NOT NULL,
+employment_type VARCHAR(20) NOT NULL,
+isAdmin BOOLEAN NOT NULL DEFAULT FALSE,
+company_id INT NOT NULL,
+FOREIGN KEY (company_id) REFERENCES company(id)
+);
+
+-- create a sequence for the Employee table
+CREATE SEQUENCE seq_employee START 1 INCREMENT BY 50;
+
+-- create the User table
+CREATE TABLE users (
+id INT NOT NULL PRIMARY KEY,
+email VARCHAR(200) NOT NULL UNIQUE,
+password VARCHAR(50),
+confirm_password VARCHAR(50),
+employee_id INT,
+FOREIGN KEY (employee_id) REFERENCES employee(id)
+);
+-- create a sequence for the User table
+CREATE SEQUENCE seq_user START 1 INCREMENT BY 1;
+
+-- create the Bonus table
+CREATE TABLE bonus (
+id INT NOT NULL PRIMARY KEY,
+employee_id INT NOT NULL,
+company_id INT NOT NULL,
+amount DECIMAL(10,2) NOT NULL,
+FOREIGN KEY (employee_id) REFERENCES employee(id),
+FOREIGN KEY (company_id) REFERENCES company(id)
+);
+
+
+CREATE SEQUENCE seq_bonus START 1 INCREMENT BY 50;
+
+
+CREATE table vacation_request (
+id INTEGER NOT NULL,
+employee_id INTEGER NOT NULL,
+start_date DATE NOT NULL,
+end_date DATE NOT NULL,
+status VARCHAR(20) NOT NULL,
+days INT not null,
+PRIMARY KEY (id),
+FOREIGN KEY (employee_id) REFERENCES employee (id)
+);
+
+-- create a sequence for the Vacation_Request table
+CREATE SEQUENCE vacation_request_seq START 1 INCREMENT BY 50;
+
+-- create the Product table
+CREATE TABLE product (
+id INTEGER NOT null,
+name VARCHAR(255) NOT NULL,
+description VARCHAR(1000) NOT NULL,
+barcode Varchar(255) NOT null,
+PRIMARY KEY (id)
+);
+
+-- create a sequence for the Product table
+CREATE SEQUENCE product_seq START 1 INCREMENT BY 50;
+
+-- create the Employee_Product_Assignment table
+CREATE TABLE employee_product (
+id INTEGER NOT NULL,
+employee_id INTEGER NOT NULL,
+product_id INTEGER NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (employee_id) REFERENCES employee (id),
+FOREIGN KEY (product_id) REFERENCES product (id)
+);
+
+-- create a sequence for the Employee_Product_Assignment table
+CREATE SEQUENCE employee_product_seq START 1 INCREMENT BY 50;
