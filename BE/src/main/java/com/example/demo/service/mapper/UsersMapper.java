@@ -12,6 +12,7 @@ public class UsersMapper {
         usersDTO.setEmail(users.getEmail());
         usersDTO.setPassword(users.getPassword());
         usersDTO.setConfirmPassword(users.getConfirmPassword());
+        usersDTO.setEmployee(users.getEmployee());
         return usersDTO;
     }
 }

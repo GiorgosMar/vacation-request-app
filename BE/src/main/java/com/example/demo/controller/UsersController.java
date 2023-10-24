@@ -17,7 +17,8 @@ public class UsersController {
     }
 
     @PostMapping(path = "/users/login/email")
-    public UsersDTO emailLogin(@RequestBody String email){
-        return usersService.emailExists(email);
+    public UsersDTO checkIfEmailExists(@RequestBody UsersDTO usersDTO){
+        String email = usersDTO.getEmail();
+        return usersService.checkIfEmailExists(email);
     }
 }

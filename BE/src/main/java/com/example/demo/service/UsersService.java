@@ -22,13 +22,13 @@ public class UsersService {
         this.usersMapper = usersMapper;
     }
 
-    public UsersDTO emailExists(String email){
-        Optional<Users> usersOptional = usersRepository.findUserIfexists(email);
+    public UsersDTO checkIfEmailExists(String email){
+        Optional<Users> usersOptional = usersRepository.findUsersByEmail(email);
         if(usersOptional.isEmpty()){
             throw new EntityNotFoundException("User with email: " + email + " doesn't exist");
         }
         Users user = usersOptional.get();
         UsersDTO usersDTO = usersMapper.toDTO(user);
-        return ResponseEntity.ok().body(usersDTO).getBody();
+        return usersDTO;
     }
 }

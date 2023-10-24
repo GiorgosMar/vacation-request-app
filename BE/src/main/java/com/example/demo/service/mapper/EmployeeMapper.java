@@ -13,11 +13,11 @@ public class EmployeeMapper {
         employeeDTO.setId(employee.getId());
         employeeDTO.setName(employee.getName());
         employeeDTO.setSurname(employee.getSurname());
-        employeeDTO.setEmail(employee.getEmail());
         employeeDTO.setStartDate(employee.getStartDate());
         employeeDTO.setVacationDays(employee.getVacationDays());
         employeeDTO.setSalary(employee.getSalary());
         employeeDTO.setEmploymentType(employee.getEmploymentType());
+        employeeDTO.setIsAdmin(employee.getIsAdmin());
         employeeDTO.setCompany(employee.getCompany());
         return employeeDTO;
     }
@@ -26,11 +26,11 @@ public class EmployeeMapper {
         employee.setId(employeeDTO.getId());
         employee.setName(employeeDTO.getName());
         employee.setSurname(employeeDTO.getSurname());
-        employee.setEmail(employeeDTO.getEmail());
         employee.setStartDate(employeeDTO.getStartDate());
         employee.setVacationDays(employeeDTO.getVacationDays());
         employee.setSalary(employeeDTO.getSalary());
         employee.setEmploymentType(employeeDTO.getEmploymentType());
+        employee.setIsAdmin(employeeDTO.getIsAdmin());
         employee.setCompany(employeeDTO.getCompany());
         return employee;
     }
