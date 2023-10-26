@@ -22,7 +22,7 @@ public class UsersService {
     }
 
     public UsersDTO checkIfEmailExists(String email){
-        Optional<Users> usersOptional = usersRepository.findUsersByEmail(email);
+        Optional<Users> usersOptional = usersRepository.findByEmail(email);
         if(usersOptional.isEmpty()){
             throw new EntityNotFoundException("User with email: " + email + " doesn't exist");
         }
