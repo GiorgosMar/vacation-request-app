@@ -10,9 +10,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -42,9 +44,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         email = jwtService.extractEmail(jwt);
         if(email != null && SecurityContextHolder.getContext().getAuthentication() == null){
             UsersDTO usersDTO = usersService.checkIfEmailExists(email);
-
-
-            //UserDetails userDetails = this.userDetailsService.loadUserByEmail(email);
+            if(jwtService.isTokenValid(jwt, usersDTO)){
+//                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+//                        usersDTO,
+//                        null,
+//                );
+//                authToken.setDetails(
+//                        new WebAuthenticationDetails().
+//                );
+//                SecurityContextHolder.getContext().setAuthentication(authToken);
+            }
         }
+        filterChain.doFilter(request, response);
     }
 }

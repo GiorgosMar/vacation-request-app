@@ -124,3 +124,5 @@ l
 <BE/src/main/java/com/vacationRequest/service/JwtService.java,7\f\7f6b5fc3264ae9d5dee3458236a3da2963ea4f87
 u
 EBE/src/main/java/com/vacationRequest/JWT/JwtAuthenticationFilter.java,5\d\5d5d0b7191d9c5ae9ca55cd78578730908040341
+x
+HBE/src/main/java/com/vacationRequest/security/SecurityConfiguration.java,9\c\9c40118fa19b74e10e8d6d7dc38f80ff17435658
