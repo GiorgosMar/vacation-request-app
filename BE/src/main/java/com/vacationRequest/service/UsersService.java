@@ -6,6 +6,7 @@ import com.vacationRequest.repository.UsersRepository;
 
 import com.vacationRequest.service.mapper.UsersMapper;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -21,13 +22,21 @@ public class UsersService {
         this.usersMapper = usersMapper;
     }
 
-    public UsersDTO checkIfEmailExists(String email){
+//    public UsersDTO checkIfEmailExists(String email){
+//        Optional<Users> usersOptional = usersRepository.findByEmail(email);
+//        if(usersOptional.isEmpty()){
+//            throw new EntityNotFoundException("User with email: " + email + " doesn't exist");
+//        }
+//        Users user = usersOptional.get();
+//        return usersMapper.toDTO(user);
+//    }
+
+    public UserDetails checkIfEmailExists(String email){
         Optional<Users> usersOptional = usersRepository.findByEmail(email);
         if(usersOptional.isEmpty()){
             throw new EntityNotFoundException("User with email: " + email + " doesn't exist");
         }
-        Users user = usersOptional.get();
-        return usersMapper.toDTO(user);
+        return usersOptional.get();
     }
 
     public UsersDTO checkIfPasswordIsCorrect(String enteredPassword, UsersDTO usersDTO){

@@ -1,6 +1,5 @@
 package com.vacationRequest.service;
 
-import com.vacationRequest.dto.UsersDTO;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -43,23 +42,23 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    public String generateToken(UsersDTO usersDTO){
-        return generateToken(new HashMap<>(), usersDTO);
+    public String generateToken(UserDetails userDetails){
+        return generateToken(new HashMap<>(), userDetails);
     }
-    public String generateToken(Map<String, Object> extraClaims, UsersDTO usersDTO){
+    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails){
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
-                .setSubject(usersDTO.getEmail())
+                .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    public boolean isTokenValid(String token, UsersDTO usersDTO){
+    public boolean isTokenValid(String token, UserDetails userDetails){
         final String email = extractEmail(token);
-        return (email.equals(usersDTO.getEmail()) && !isTokenExpired(token));
+        return (email.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
     private boolean isTokenExpired(String token) {
