@@ -22,22 +22,22 @@ public class UsersService {
         this.usersMapper = usersMapper;
     }
 
-//    public UsersDTO checkIfEmailExists(String email){
-//        Optional<Users> usersOptional = usersRepository.findByEmail(email);
-//        if(usersOptional.isEmpty()){
-//            throw new EntityNotFoundException("User with email: " + email + " doesn't exist");
-//        }
-//        Users user = usersOptional.get();
-//        return usersMapper.toDTO(user);
-//    }
-
-    public UserDetails checkIfEmailExists(String email){
+    public UsersDTO checkIfEmailExists(String email){
         Optional<Users> usersOptional = usersRepository.findByEmail(email);
         if(usersOptional.isEmpty()){
             throw new EntityNotFoundException("User with email: " + email + " doesn't exist");
         }
-        return usersOptional.get();
+        Users user = usersOptional.get();
+        return usersMapper.toDTO(user);
     }
+
+//    public UserDetails checkIfEmailExists(String email){
+//        Optional<Users> usersOptional = usersRepository.findByEmail(email);
+//        if(usersOptional.isEmpty()){
+//            throw new EntityNotFoundException("User with email: " + email + " doesn't exist");
+//        }
+//        return usersOptional.get();
+//    }
 
     public UsersDTO checkIfPasswordIsCorrect(String enteredPassword, UsersDTO usersDTO){
         if(enteredPassword.isEmpty()){
