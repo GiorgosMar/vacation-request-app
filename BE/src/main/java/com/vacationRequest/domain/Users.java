@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -40,12 +41,17 @@ public class Users implements UserDetails {
     @ManyToOne
     private Employee employee;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<UserRole> userRole;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(userRole.toString()));
+        List<SimpleGrantedAuthority> result = new ArrayList<>();
+        for(UserRole role : userRole){
+            SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(role.getRole().getDescription());
+            result.add(simpleGrantedAuthority);
+        }
+        return result;
     }
     @Override
     public String getUsername() {

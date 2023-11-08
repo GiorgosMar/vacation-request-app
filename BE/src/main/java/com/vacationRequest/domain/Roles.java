@@ -28,6 +28,9 @@ public class Roles {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "user_role")
+    private String description;
+
     @OneToMany(mappedBy = "role")
     Set<UserRole> userRole;
 
