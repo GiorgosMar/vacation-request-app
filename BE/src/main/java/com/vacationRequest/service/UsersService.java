@@ -1,12 +1,15 @@
 package com.vacationRequest.service;
 
 import com.vacationRequest.domain.Users;
+import com.vacationRequest.dto.AuthenticationResponse;
 import com.vacationRequest.dto.UsersDTO;
 import com.vacationRequest.repository.UsersRepository;
 
 import com.vacationRequest.service.mapper.UsersMapper;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.Builder;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,10 +19,14 @@ import java.util.Optional;
 public class UsersService {
     private final UsersRepository usersRepository;
     private final UsersMapper usersMapper;
+    private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
 
-    public UsersService(UsersRepository usersRepository, UsersMapper usersMapper) {
+    public UsersService(UsersRepository usersRepository, UsersMapper usersMapper, AuthenticationManager authenticationManager, JwtService jwtService) {
         this.usersRepository = usersRepository;
         this.usersMapper = usersMapper;
+        this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
     }
 
     public UsersDTO checkIfEmailExists(String email){
@@ -39,13 +46,16 @@ public class UsersService {
 //        return usersOptional.get();
 //    }
 
-    public UsersDTO checkIfPasswordIsCorrect(String enteredPassword, UsersDTO usersDTO){
-        if(enteredPassword.isEmpty()){
-            throw new EntityNotFoundException("Password field is empty!");
-        }
-        if (!enteredPassword.equals(usersDTO.getPassword())){
-            throw new EntityNotFoundException("Password is wrong!");
-        }
-        return usersDTO;
+    public AuthenticationResponse authenticate(UsersDTO usersDTO){
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                      usersDTO.getEmail(),
+                      usersDTO.getPassword()
+                )
+        );
+        UsersDTO userDTO = checkIfEmailExists(usersDTO.getEmail());
+        Users user = usersMapper.toEntity(userDTO);
+        String jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder().token(jwtToken).build();
     }
 }

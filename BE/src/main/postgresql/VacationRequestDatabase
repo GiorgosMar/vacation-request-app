@@ -9,6 +9,7 @@ phone VARCHAR(20) NOT NULL
 -- create a sequence for the Company table
 CREATE SEQUENCE seq_company START 1 INCREMENT BY 50;
 
+-- create the Employee table
 CREATE TABLE employee (
 id INT NOT NULL PRIMARY KEY,
 name VARCHAR(255) NOT NULL,
@@ -25,15 +26,36 @@ FOREIGN KEY (company_id) REFERENCES company(id)
 -- create a sequence for the Employee table
 CREATE SEQUENCE seq_employee START 1 INCREMENT BY 50;
 
+-- create the UserRole table
+CREATE TABLE UserRole (
+id INT NOT NULL PRIMARY KEY,
+role_id INT NOT NULL,
+user_id INT NOT NULL,
+FOREIGN KEY (role_id) REFERENCES roles(id),
+FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- create a sequence for the UserRole table
+CREATE SEQUENCE seq_user_role START 1 INCREMENT BY 50;
+
+-- create the Roles table
+CREATE TABLE Roles (
+id INT NOT NULL PRIMARY KEY,
+user_role VARCHAR(255) NOT NULL
+);
+
+-- create a sequence for the Role table
+CREATE SEQUENCE seq_roles START 1 INCREMENT BY 50;
+
 -- create the User table
 CREATE TABLE users (
 id INT NOT NULL PRIMARY KEY,
 email VARCHAR(200) NOT NULL UNIQUE,
 password VARCHAR(50),
-confirm_password VARCHAR(50),
-employee_id INT,
+employee_id INT NOT NULL,
 FOREIGN KEY (employee_id) REFERENCES employee(id)
 );
+
 -- create a sequence for the User table
 CREATE SEQUENCE seq_user START 1 INCREMENT BY 1;
 
