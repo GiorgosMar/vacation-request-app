@@ -44,9 +44,6 @@ public class Employee {
     @Column(name = "employment_type")
     private String employmentType;
 
-    @Column(name = "isadmin")
-    private Boolean isAdmin;
-
     @JoinColumn(name= "company_id")
     @ManyToOne
     private Company company;

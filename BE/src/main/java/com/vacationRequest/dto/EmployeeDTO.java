@@ -14,6 +14,5 @@ public class EmployeeDTO {
     private Integer vacationDays;
     private Double salary;
     private String employmentType;
-    private Boolean isAdmin;
     private Company company;
 }

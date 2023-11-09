@@ -24,7 +24,7 @@ public class UsersController {
         return usersService.checkIfEmailExists(email);
     }
     @PostMapping(path = "/login/authenticate")
-    public ResponseEntity<AuthenticationResponse> checkIfPasswordIsCorrect(@RequestBody UsersDTO usersDTO){
+    public ResponseEntity<AuthenticationResponse> authentication(@RequestBody UsersDTO usersDTO){
         return ResponseEntity.ok(usersService.authenticate(usersDTO));
     }
 

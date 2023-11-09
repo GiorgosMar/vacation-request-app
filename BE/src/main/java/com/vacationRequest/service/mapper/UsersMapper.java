@@ -12,7 +12,6 @@ public class UsersMapper {
         usersDTO.setEmail(users.getEmail());
         usersDTO.setPassword(users.getPassword());
         usersDTO.setEmployee(users.getEmployee());
-        usersDTO.setUserRole(users.getUserRole());
         return usersDTO;
     }
     public Users toEntity(UsersDTO usersDTO) {
@@ -21,7 +20,6 @@ public class UsersMapper {
         users.setEmail(usersDTO.getEmail());
         users.setPassword(usersDTO.getPassword());
         users.setEmployee(usersDTO.getEmployee());
-        users.setUserRole(usersDTO.getUserRole());
         return users;
     }
 }

@@ -17,7 +17,6 @@ public class EmployeeMapper {
         employeeDTO.setVacationDays(employee.getVacationDays());
         employeeDTO.setSalary(employee.getSalary());
         employeeDTO.setEmploymentType(employee.getEmploymentType());
-        employeeDTO.setIsAdmin(employee.getIsAdmin());
         employeeDTO.setCompany(employee.getCompany());
         return employeeDTO;
     }
@@ -30,7 +29,6 @@ public class EmployeeMapper {
         employee.setVacationDays(employeeDTO.getVacationDays());
         employee.setSalary(employeeDTO.getSalary());
         employee.setEmploymentType(employeeDTO.getEmploymentType());
-        employee.setIsAdmin(employeeDTO.getIsAdmin());
         employee.setCompany(employeeDTO.getCompany());
         return employee;
     }

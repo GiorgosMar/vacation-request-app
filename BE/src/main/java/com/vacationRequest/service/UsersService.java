@@ -38,14 +38,6 @@ public class UsersService {
         return usersMapper.toDTO(user);
     }
 
-//    public UserDetails checkIfEmailExists(String email){
-//        Optional<Users> usersOptional = usersRepository.findByEmail(email);
-//        if(usersOptional.isEmpty()){
-//            throw new EntityNotFoundException("User with email: " + email + " doesn't exist");
-//        }
-//        return usersOptional.get();
-//    }
-
     public AuthenticationResponse authenticate(UsersDTO usersDTO){
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
