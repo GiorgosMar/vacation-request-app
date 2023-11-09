@@ -1,0 +1,12 @@
+
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ó¶ ˜úÿÿÿÿ8¼–´¤º1
+_
+java:S1128"=Remove this unused import 'com.vacationRequest.domain.Users'.(‹Ùçûÿÿÿÿ8ÌôÂ¤º1
+Z
+java:S1128"=Remove this unused import 'com.vacationRequest.dto.UsersDTO'.(¶ã‹Ó8ÎôÂ¤º1
+a
+java:S1128"ERemove this unused import 'com.vacationRequest.service.UsersService'.(ğÓ£:8ÏôÂ¤º1
+x
+java:S1128"VRemove this unused import 'org.springframework.security.core.context.SecurityContext'.(ØıŞşÿÿÿÿ8ÑôÂ¤º1
+‡
+java:S1128"eRemove this unused import 'org.springframework.security.web.authentication.WebAuthenticationDetails'.(˜öÃˆıÿÿÿÿ8ÒôÂ¤º1
