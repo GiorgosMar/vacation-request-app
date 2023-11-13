@@ -29,13 +29,12 @@ public class UsersService {
         this.jwtService = jwtService;
     }
 
-    public UsersDTO checkIfEmailExists(String email){
+    public Boolean checkIfEmailExists(String email){
         Optional<Users> usersOptional = usersRepository.findByEmail(email);
         if(usersOptional.isEmpty()){
             throw new EntityNotFoundException("User with email: " + email + " doesn't exist");
         }
-        Users user = usersOptional.get();
-        return usersMapper.toDTO(user);
+        return true;
     }
 
     public AuthenticationResponse authenticate(UsersDTO usersDTO){
@@ -45,8 +44,9 @@ public class UsersService {
                       usersDTO.getPassword()
                 )
         );
-        UsersDTO userDTO = checkIfEmailExists(usersDTO.getEmail());
-        Users user = usersMapper.toEntity(userDTO);
+        checkIfEmailExists(usersDTO.getEmail());
+        Optional<Users> usersOptional = usersRepository.findByEmail(usersDTO.getEmail());
+        Users user = usersOptional.get();
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder().token(jwtToken).build();
     }

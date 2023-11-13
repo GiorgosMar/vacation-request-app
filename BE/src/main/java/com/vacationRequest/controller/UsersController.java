@@ -19,7 +19,7 @@ public class UsersController {
     }
 
     @PostMapping(path = "/login/email")
-    public UsersDTO checkIfEmailExists(@RequestBody UsersDTO usersDTO){
+    public Boolean checkIfEmailExists(@RequestBody UsersDTO usersDTO){
         String email = usersDTO.getEmail();
         return usersService.checkIfEmailExists(email);
     }

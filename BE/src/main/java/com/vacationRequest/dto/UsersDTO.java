@@ -14,4 +14,5 @@ public class UsersDTO {
     private String email;
     private String password;
     private Employee employee;
+    private Set<UserRole> roles;
 }
