@@ -134,3 +134,5 @@ f
 6BE/src/main/java/com/vacationRequest/domain/Roles.java,6\3\638bbe89be862a8b9ccbf910eb12396d23c12f0e
 t
 DBE/src/main/java/com/vacationRequest/dto/AuthenticationResponse.java,7\5\754af2d48213aa975004ed75a7b03724a941bcb1
+J
+UI/src/components/Login.js,3\d\3d84ded70c3f0b756aec4a84fd09078c2de2face
