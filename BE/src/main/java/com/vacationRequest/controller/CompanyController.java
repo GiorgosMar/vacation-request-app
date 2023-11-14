@@ -16,7 +16,7 @@ public class CompanyController {
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path ="/company")
     public List<CompanyDTO> getAllCompanies(){
         return companyService.getAllCompanies();

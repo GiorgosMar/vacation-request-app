@@ -18,7 +18,7 @@ public class VacationRequestController {
     public VacationRequestController(VacationRequestService vacationRequestService) {
         this.vacationRequestService = vacationRequestService;
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/vacationReq")
     public List<VacationRequestDTO> getAllVacationRequests(){
         return vacationRequestService.getAllVacationRequests();

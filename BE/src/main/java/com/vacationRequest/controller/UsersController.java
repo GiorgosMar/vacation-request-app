@@ -4,10 +4,7 @@ import com.vacationRequest.dto.AuthenticationResponse;
 import com.vacationRequest.dto.UsersDTO;
 import com.vacationRequest.service.UsersService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "api/v1/users")
@@ -18,6 +15,7 @@ public class UsersController {
         this.usersService = usersService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path = "/login/email")
     public Boolean checkIfEmailExists(@RequestBody UsersDTO usersDTO){
         String email = usersDTO.getEmail();

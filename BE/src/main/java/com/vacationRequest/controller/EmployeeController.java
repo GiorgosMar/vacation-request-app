@@ -16,7 +16,7 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/employee")
     public List<EmployeeDTO> getAllEmployees(){
         return employeeService.getAllEmployees();

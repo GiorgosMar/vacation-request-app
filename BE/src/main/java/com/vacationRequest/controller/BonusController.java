@@ -15,7 +15,7 @@ public class BonusController {
     public BonusController(BonusService bonusService) {
         this.bonusService = bonusService;
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/bonus")
     public List<BonusDTO> getAllBonus(){
         return bonusService.getAllBonus();

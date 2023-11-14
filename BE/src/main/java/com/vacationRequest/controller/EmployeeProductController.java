@@ -17,7 +17,7 @@ public class EmployeeProductController {
     public EmployeeProductController(EmployeeProductService employeeProductService) {
         this.employeeProductService = employeeProductService;
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/employeeProduct/company/{companyId}")
     public Map<String, List<Product>> getEmployeeProductsByCompany(@PathVariable("companyId") Long companyId){
         return employeeProductService.getEmployeeProductsByCompany(companyId);

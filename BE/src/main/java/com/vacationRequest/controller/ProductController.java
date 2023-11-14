@@ -15,7 +15,7 @@ public class ProductController {
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/product")
     public List<ProductDTO> getAllProducts(){
         return productService.getAllProducts();
