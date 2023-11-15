@@ -16,11 +16,6 @@ public class UsersController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(path = "/login/email")
-    public Boolean checkIfEmailExists(@RequestBody UsersDTO usersDTO){
-        String email = usersDTO.getEmail();
-        return usersService.checkIfEmailExists(email);
-    }
     @PostMapping(path = "/login/authenticate")
     public ResponseEntity<AuthenticationResponse> authentication(@RequestBody UsersDTO usersDTO){
         return ResponseEntity.ok(usersService.authenticate(usersDTO));
