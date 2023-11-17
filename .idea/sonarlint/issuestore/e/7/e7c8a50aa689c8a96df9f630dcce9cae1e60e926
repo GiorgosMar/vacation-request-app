@@ -1,2 +1,6 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¡‰³•ûÿÿÿÿ8Ú±²¿¼1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¡‰³•ûÿÿÿÿ8§ä×ç½1
+b
+java:S1128"@Remove this unused import 'com.vacationRequest.domain.UserRole'.(»¦éÒøÿÿÿÿ8µä×ç½1
+h
+java:S1128"KRemove this unused import 'com.vacationRequest.dto.AuthenticationResponse'.(Þ÷È¸8µä×ç½1

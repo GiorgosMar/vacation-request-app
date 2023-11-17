@@ -1,6 +1,6 @@
 
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¨€Ì¨8ÆµÏüº1
 L
-java:S1948*"*Make "employee" transient or serializable.(ô› şÿÿÿÿ8ÏµÏüº1
+java:S1948+"*Make "employee" transient or serializable.(ô› şÿÿÿÿ8ÏµÏüº1
 G
-java:S1948-"*Make "userRole" transient or serializable.(¥¦Œ›8ÓµÏüº1
+java:S1948."*Make "userRole" transient or serializable.(¥¦Œ›8ÓµÏüº1

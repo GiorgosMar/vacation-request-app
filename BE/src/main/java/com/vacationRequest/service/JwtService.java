@@ -51,21 +51,10 @@ public class JwtService {
 
     public String generateToken(Map<String, Object> extraClaims, Users userDetails) {
 
-        List<String> userRoleList = new ArrayList<>();
-        Set<UserRole> userRole = userDetails.getUserRole();
-
-        for(UserRole role : userRole){
-            String usRole = role.getRole().getDescription();
-            userRoleList.add(usRole);
-        }
-
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("role", userRoleList);
-
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
-                .setSubject(userDetails.getUsername()).addClaims(claims)
+                .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)

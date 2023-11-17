@@ -1,10 +1,14 @@
 package com.vacationRequest.controller;
 
+import com.vacationRequest.domain.UserRole;
+import com.vacationRequest.dto.AuthUserDTO;
 import com.vacationRequest.dto.AuthenticationResponse;
 import com.vacationRequest.dto.UsersDTO;
 import com.vacationRequest.service.UsersService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RestController
 @RequestMapping(path = "api/v1/users")
@@ -17,8 +21,10 @@ public class UsersController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path = "/login/authenticate")
-    public ResponseEntity<AuthenticationResponse> authentication(@RequestBody UsersDTO usersDTO){
-        return ResponseEntity.ok(usersService.authenticate(usersDTO));
+    public ResponseEntity<Set<String>> authentication(@RequestBody UsersDTO usersDTO){
+         AuthUserDTO authUserDTO = usersService.authenticate(usersDTO);
+
+        return ResponseEntity.ok().header("Authorization", authUserDTO.getToken()).body(authUserDTO.getUserRoleSet());
     }
 
 }
