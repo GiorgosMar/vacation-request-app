@@ -1,5 +1,5 @@
-import { Grid } from "@mui/material";
-import React, { Fragment } from "react";
+import {Alert, Grid} from "@mui/material";
+import React, {useState} from "react";
 import { useTheme } from "@mui/material/styles";
 
 import Typography from "@mui/material/Typography";
@@ -25,6 +25,15 @@ function Copyright(props) {
 }
 
 const Login = () => {
+
+    //useState//
+    const [inputs, setInputs] = useState({
+        email: "",
+        password: "",
+    });
+    const [errorMessage, setErrorMessage] = useState(false);
+    const { email, password } = inputs;
+
   const theme = useTheme();
   const style = {
     form: {
@@ -34,32 +43,40 @@ const Login = () => {
     },
   };
 
-  const onSubmitEmail = async (e) => {
-    e.preventDefault();
-    const body = { email };
-    axios.post("http://localhost:5000/auth/login", { body })
-    .then().
-    catch();
-  };
+    const onSubmitEmail = async (e) => {
+        e.preventDefault();
+        const body = {email}
+        await axios.post("https://reqres.in/api/login", {body})
+    };
 
   return (
-    <Fragment>
-      <Grid container style={{ height: "100vh" }}>
+      <Grid container style={{height: "100vh"}}>
         <Grid item container sx={style.form}>
           <LoginEmailForm>
             <LoginEmailField
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <LoginButton />
-                  </InputAdornment>
-                ),
-              }}
+                InputProps={{
+                  endAdornment: (
+                      <InputAdornment position="end">
+                        <LoginButton onClick={onSubmitEmail}  />
+                      </InputAdornment>
+                  ),
+                }}
+                value={inputs.email}
+                onChange={(e) =>
+                    setInputs({
+                        ...inputs,
+                        email: e.target.value,
+                    })
+                }
             />
+              <Grid sx={{mt:2}}>
+                  {errorMessage && (
+                      <Alert severity="error"> {errorMessage} </Alert>
+                  )}
+              </Grid>
           </LoginEmailForm>
         </Grid>
       </Grid>
-    </Fragment>
   );
 };
 export default Login;
