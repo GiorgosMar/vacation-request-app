@@ -3,6 +3,7 @@ package com.vacationRequest.service;
 import com.vacationRequest.domain.UserRole;
 import com.vacationRequest.domain.Users;
 import com.vacationRequest.dto.AuthUserDTO;
+import com.vacationRequest.dto.AuthenticationUserDTO;
 import com.vacationRequest.dto.UsersDTO;
 import com.vacationRequest.repository.UsersRepository;
 import com.vacationRequest.service.mapper.UsersMapper;
@@ -52,7 +53,30 @@ public class UsersService {
         authUserDTO.setToken("Bearer " + jwtToken);
         authUserDTO.setUserRoleSet(userRoleSet);
 
+
         return ResponseEntity.ok().body(authUserDTO).getBody();
 
+    }
+
+    public AuthenticationUserDTO getRoles(String userEmail) {
+        AuthenticationUserDTO authenticationUserDTO = new AuthenticationUserDTO();
+        Optional<Users> usersOptional = usersRepository.findByEmail(userEmail);
+        if (usersOptional.isEmpty()) {
+            throw new EntityNotFoundException("User with email: " + userEmail + " doesn't exist");
+        }
+        Users user = usersOptional.get();
+
+        Set<String> userRoleSet = new HashSet<>();
+        Set<UserRole> userRole = user.getUserRole();
+
+        for (UserRole role : userRole) {
+            String usRole = role.getRole().getDescription();
+            userRoleSet.add(usRole);
+        }
+
+        authenticationUserDTO.setIsAuth(true);
+        authenticationUserDTO.setUserRoleSet(userRoleSet);
+
+        return ResponseEntity.ok().body(authenticationUserDTO).getBody();
     }
 }

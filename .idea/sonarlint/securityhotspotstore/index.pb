@@ -132,7 +132,7 @@ i
 9BE/src/main/java/com/vacationRequest/domain/UserRole.java,a\7\a708d794290aa48151e86ecbe4e62b77f93808ae
 f
 6BE/src/main/java/com/vacationRequest/domain/Roles.java,6\3\638bbe89be862a8b9ccbf910eb12396d23c12f0e
-t
-DBE/src/main/java/com/vacationRequest/dto/AuthenticationResponse.java,7\5\754af2d48213aa975004ed75a7b03724a941bcb1
 i
 9BE/src/main/java/com/vacationRequest/dto/AuthUserDTO.java,c\d\cd61dc7e592402812674efe8bc726539cf055009
+s
+CBE/src/main/java/com/vacationRequest/dto/AuthenticationUserDTO.java,e\4\e4aa3398f6f5ce0f8938f24ee5eebbea4d5d9540

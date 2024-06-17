@@ -25,47 +25,53 @@ public class CompanyService {
         this.employeeService = employeeService;
         this.companyMapper = companyMapper;
     }
-    public List<CompanyDTO> getAllCompanies(){
+
+    public List<CompanyDTO> getAllCompanies() {
         List<Company> companyList = companyRepository.findAll();
         List<CompanyDTO> companyDTOList = companyMapper.toDTO(companyList);
         return ResponseEntity.ok().body(companyDTOList).getBody();
     }
-    public double getMonthlyExpenses(Long companyId){
+
+    public double getMonthlyExpenses(Long companyId) {
         double amount = employeeService.getMonthlyExpenses(companyId);
         return ResponseEntity.ok().body(amount).getBody();
     }
-    public CompanyDTO getCompanyById(Long companyId){
+
+    public CompanyDTO getCompanyById(Long companyId) {
         Optional<Company> companyOptional = companyRepository.findById(companyId);
-        if(companyOptional.isEmpty()){
+        if (companyOptional.isEmpty()) {
             throw new EntityNotFoundException("Company not found for id : " + companyId);
         }
         CompanyDTO companyDTO = companyMapper.toDTO(companyOptional.get());
         return ResponseEntity.ok().body(companyDTO).getBody();
     }
+
     public CompanyDTO addNewCompany(Company company) {
         Optional<Company> companyOptional = companyRepository
                 .findCompanyByName(company.getName());
-        if(companyOptional.isPresent()){
+        if (companyOptional.isPresent()) {
             throw new NameAlreadyExistsException(Const.NAME_ALREADY_EXISTS);
         }
         CompanyDTO companyDTO;
         companyDTO = companyMapper.toDTO(companyRepository.save(company));
         return ResponseEntity.ok().body(companyDTO).getBody();
     }
+
     public void deleteCompany(Long companyId) {
         boolean exists = companyRepository.existsById(companyId);
-        if(!exists){
+        if (!exists) {
             throw new EntityNotFoundException("Company with id " + companyId + " does not exist");
         }
         companyRepository.deleteById(companyId);
     }
+
     @Transactional
     public CompanyDTO updateCompany(Long companyId, Company company) {
         boolean exists = companyRepository.existsById(companyId);
         CompanyDTO companyDTO;
-        if(!exists){
+        if (!exists) {
             throw new EntityNotFoundException("Company with id " + companyId + " does not exist");
-        }else{
+        } else {
             companyDTO = companyMapper.toDTO(companyRepository.save(company));
         }
         return ResponseEntity.ok().body(companyDTO).getBody();
